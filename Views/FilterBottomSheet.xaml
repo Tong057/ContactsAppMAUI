@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             xmlns:vm="clr-namespace:ContactsAppMAUI.ViewModels"
+             x:Class="ContactsAppMAUI.Views.FilterBottomSheet"
+             Background="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+             CornerRadius="15" HasBackdrop="True">
+    <the49:BottomSheet.Detents>
+        <the49:RatioDetent Ratio="0.5" />
+    </the49:BottomSheet.Detents>
+    
+    <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, *, *, *" ColumnSpacing="10" RowSpacing="10" Padding="10" Margin="0, 10, 0, 0">
+        
+        <Picker Title="Filtering" 
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Grid.ColumnSpan="2" 
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center" 
+                FontSize="16" 
+                SelectedIndex="{Binding SelectedFilterIndex}">
+            <Picker.Items>
+                <x:String>Name</x:String>
+                <x:String>Surname</x:String>
+                <x:String>City</x:String>
+                <x:String>Phone number</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Picker Title="Sorting" 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2" 
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center"
+                FontSize="16" 
+                SelectedIndex="{Binding SelectedSortIndex, Mode=TwoWay}">
+            <Picker.Items>
+                <x:String>Ascending</x:String>
+                <x:String>Descending</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Picker Title="Transformation" 
+                Grid.Column="0" 
+                Grid.Row="2" 
+                Grid.ColumnSpan="2" 
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center" 
+                FontSize="16" 
+                SelectedIndex="{Binding SelectedTransformIndex}">
+            <Picker.Items>
+                <x:String>Every letter to upper</x:String>
+                <x:String>Even letter to upper</x:String>
+                <x:String>Delete all vowels</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Picker Title="Testing - input to searchbar" 
+                Grid.Column="0" 
+                Grid.Row="3" 
+                Grid.ColumnSpan="2" 
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center" 
+                FontSize="16" 
+                SelectedIndex="{Binding SelectedTestIndex}" 
+                SelectedItem="{Binding SelectedTestItem}">
+            <Picker.Items>
+                <x:String>Any contacts with this Name</x:String>
+                <x:String>Any contacts with this Name length</x:String>
+                <x:String>Any contacts with this number start</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Picker Title="Aggregation" 
+                Grid.Column="0"
+                Grid.Row="4" 
+                Grid.ColumnSpan="2"
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center"
+                FontSize="16"
+                SelectedItem="{Binding SelectedAggregateItem}">
+            <Picker.Items>
+                <x:String>Amount of contacts</x:String>
+                <x:String>Average name length</x:String>
+                <x:String>Longest phone number</x:String>
+            </Picker.Items>
+        </Picker>
+        
+        <Button Text="Reset" 
+                Grid.Row="5" 
+                FontSize="16"
+                Grid.ColumnSpan="2"
+                Command="{Binding ResetFilterOptionsCommand}"/>
+        
+    </Grid>
+
+</the49:BottomSheet>

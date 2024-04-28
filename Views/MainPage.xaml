@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactsAppMAUI.MainPage"
+             xmlns:m="clr-namespace:ContactsAppMAUI.Models"
+             xmlns:vm="clr-namespace:ContactsAppMAUI.ViewModels"
+             HideSoftInputOnTapped="True">
+    <Grid Padding="10" RowDefinitions="50, *" ColumnSpacing="10" ColumnDefinitions="*, 80">
+        
+        <SearchBar VerticalOptions="Start" 
+                   FontSize="16"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Placeholder="Search here..."
+                   Text="{Binding FilterText, Mode=TwoWay}"/>
+        
+        <Button Text="Filter" 
+                Grid.Column="1"
+                Grid.Row="0" 
+                Clicked="FilterBottomSheetButton_Clicked"/>
+
+        <ScrollView Padding="0, 10" Grid.ColumnSpan="2" Grid.Row="1">
+            <CollectionView x:Name="ContactsCollection" ItemsSource="{Binding Contacts, Mode=TwoWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Delete"
+                                       BackgroundColor="Transparent"
+                                       Command="{Binding Path=BindingContext.DeleteContactCommand, Source={x:Reference ContactsCollection}}"
+                                       CommandParameter="{Binding Id}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <Frame Margin="0, 5"  Padding="20" CornerRadius="15">
+                                <VerticalStackLayout Spacing="10">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="{Binding FirstName}" FontSize="18" FontAttributes="Bold" />
+                                        <Label Text="{Binding LastName}" FontSize="18" FontAttributes="Bold" />
+                                        <ImageButton  Command="{Binding Path=BindingContext.DeleteContactCommand, Source={x:Reference ContactsCollection}}" CommandParameter="{Binding Id}"  IsVisible="{OnPlatform WinUI=true, Default=false}"/>
+                                    </HorizontalStackLayout>
+                                    
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="{Binding PhoneNumber}" />
+                                        <Label Text="{Binding Address.City}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenEditPageCommand, Source={x:Reference ContactsCollection}}" CommandParameter="{Binding Id}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <ImageButton Source="plus.svg"
+                     HorizontalOptions="End"
+                     VerticalOptions="End"
+                     HeightRequest="60"
+                     WidthRequest="60"
+                     Grid.ColumnSpan="2" 
+                     Grid.Row="1"
+                     Margin="{OnPlatform WinUI=20, Default=10}"
+                     Command="{Binding OpenAddPageCommand}"
+                     CommandParameter="{Binding Id}" />
+    </Grid>
+
+</ContentPage>

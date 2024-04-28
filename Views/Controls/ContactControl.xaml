@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ContactsAppMAUI.Views.Controls.ContactControl"
+             xmlns:vm="clr-namespace:ContactsAppMAUI.ViewModels"
+             x:DataType="vm:ContactViewModel">
+
+    <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
+        <!--FirstName-->
+        <Frame Padding="10" CornerRadius="15">
+            <Entry VerticalOptions="Center" 
+                   Placeholder="First Name" 
+                   Margin="10, 0" 
+                   Text="{Binding Contact.FirstName}" 
+                   FontSize="17">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                            MinimumLength="1"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            IsValid="{Binding IsNameProvided}">
+                    </toolkit:TextValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <!--LastName-->
+        <Frame Padding="10" CornerRadius="15">
+            <Entry VerticalOptions="Center" 
+                   Placeholder="Last Name" 
+                   Margin="10, 0" 
+                   Text="{Binding Contact.LastName}" 
+                   FontSize="17">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                            MinimumLength="1"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            IsValid="{Binding IsSurnameProvided}">
+                    </toolkit:TextValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <!--Phone-->
+        <Frame Padding="10" CornerRadius="15">
+            <Entry VerticalOptions="Center" 
+                   Placeholder="Phone Number" 
+                   Margin="10, 0" 
+                   Text="{Binding Contact.PhoneNumber}" 
+                   FontSize="17">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                            MinimumLength="1"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            IsValid="{Binding IsPhoneProvided}">
+                    </toolkit:TextValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <!--City-->
+        <Frame Padding="10" CornerRadius="15">
+            <Entry VerticalOptions="Center" 
+                   Placeholder="City" 
+                   Margin="10, 0" 
+                   Text="{Binding Contact.Address.City}" 
+                   FontSize="17">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                            MinimumLength="1"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            IsValid="{Binding IsCityProvided}">
+                    </toolkit:TextValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <!--Street-->
+        <Frame Padding="10" CornerRadius="15">
+            <Entry VerticalOptions="Center" 
+                   Placeholder="Street" 
+                   Margin="10, 0" 
+                   Text="{Binding Contact.Address.Street}" 
+                   FontSize="17">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior
+                            MinimumLength="1"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            IsValid="{Binding IsStreetProvided}">
+                    </toolkit:TextValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <Button Text="Save" 
+                x:Name="SaveButton"  
+                FontSize="17" 
+                Padding="14, 20"/>
+        
+        <Button Text="Cancel" 
+                Clicked="CancelButton_Clicked" 
+                FontSize="17" 
+                Padding="14, 20"/>
+    </VerticalStackLayout>
+</ContentView>
