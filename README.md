@@ -1,6 +1,6 @@
 Welcome to the ContactsAppMAUI repository! This project is a contact management application developed with .NET Multi-platform App UI (MAUI), offering a cross-platform solution for managing contacts across mobile and desktop devices. Here's an overview of the key features, technologies, and architecture used in this project.
 
-Features
+	#A **Features**
 Cross-Platform Compatibility: The application is designed to run on iOS, Android, Windows, and MacOS, providing a consistent experience across different platforms.
 Contact Management: Users can create, edit, and view contacts. The app allows for easy organization and offers an intuitive interface for managing contacts.
 Search Functionality: A built-in search feature lets users quickly find contacts by name, phone number, or other attributes.
