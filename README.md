@@ -10,7 +10,7 @@ Welcome to the ContactsAppMAUI repository! This project is a contact management 
 
 ## Technologies and Frameworks
 
-- **EntityFramework Core**: Utilized for data storage, supporting a variety of databases and flexible data management.
+- **EntityFramework Core**: Utilized for data storage, supporting a variety of databases and flexible data management. A local SQLite database is used to save data.
 - **Model-View-ViewModel (MVVM)**: The application follows the MVVM architecture, using the MVVM Toolkit to manage view models and data binding.
 - **Dependency Injection**: Implemented to promote modularity and easier testing.
 
